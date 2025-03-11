@@ -9,6 +9,7 @@ class Github implements Serializable{
         this.script = script;
     }
 
+    @NonCPS
     def configNameAndEmail(String name, String email){
         script.sh "git config user.name '${name}'"
         script.sh "git config user.email '${email}'"
