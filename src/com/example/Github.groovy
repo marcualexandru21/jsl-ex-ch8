@@ -16,7 +16,7 @@ class Github implements Serializable{
 
     def setRemoteURL(String repositoryURL, String credentialsId){
         script.withCredentials([script.usernamePassword(credentialsId: "${credentialsId}", passwordVariable: 'PASS', usernameVariable: 'USER')]){
-            script.sh "git remote set-url origin https://${script.env.USER}:${script.env.PASS}@${repositoryURL}"
+            script.sh "git remote set-url origin https://${URLEncoder.encode(script.env.USER, 'UTF-8')}:${URLEncoder.encode(script.env.PASS, 'UTF-8')}@${repositoryURL}"
         }
     }
 
