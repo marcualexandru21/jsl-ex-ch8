@@ -1,3 +1,5 @@
+#!/usr/bin/env groovy
+
 package com.example
 
 class Github implements Serializable{
@@ -12,8 +14,8 @@ class Github implements Serializable{
         script.sh "git config user.email ${email}"
     }
 
-    def setRemoteURL(String repositoryURL){
-        script.withCredentials([usernamePassword(credentialsId: 'github-credentials-ex-ch8-with-token', passwordVariable: 'PASS', usernameVariable: 'USER')]){
+    def setRemoteURL(String repositoryURL, String credentialsId){
+        script.withCredentials([script.usernamePassword(credentialsId: "${credentialsId}", passwordVariable: 'PASS', usernameVariable: 'USER')]){
             script.sh "git remote set-url origin https://${script.env.USER}:${script.env.PASS}@${repositoryURL}"
         }
     }

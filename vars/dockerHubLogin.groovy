@@ -2,6 +2,6 @@
 
 import com.example.Docker
 
-def call() {
-    return new Docker(this).dockerHubLogin()
+def call(String credentialsId) {
+    return new Docker(this).dockerHubLogin(credentialsId)
 }
